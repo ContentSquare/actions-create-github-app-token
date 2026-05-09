@@ -173,6 +173,12 @@ jobs:
           body: "Hello, World!"
 ```
 
+The `repositories` input accepts comma or newline-separated repository names. It also accepts full repository names, which is useful when passing `${{ github.repository }}`:
+
+```yaml
+repositories: ${{ github.repository }},generic-submodule
+```
+
 ### Create a token for all repositories in another owner's installation
 
 ```yaml
@@ -373,10 +379,12 @@ steps:
 
 ### `repositories`
 
-**Optional:** Comma or newline-separated list of repositories to grant access to.
+**Optional:** Comma or newline-separated list of repositories to grant access to. Entries can be repository names, such as `repo1`, or full repository names, such as `owner/repo1`.
 
 > [!NOTE]
 > If `owner` is set and `repositories` is empty, access will be scoped to all repositories in the provided repository owner's installation. If `owner` and `repositories` are empty, access will be scoped to only the current repository.
+>
+> The owner portion of any full repository name in `repositories` must match the `owner` input, or the current repository owner if `owner` is unset.
 
 ### `enterprise`
 
