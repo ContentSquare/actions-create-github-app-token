@@ -173,6 +173,12 @@ jobs:
           body: "Hello, World!"
 ```
 
+You can include the current repository in the list with `${{ github.repository }}`:
+
+```yaml
+repositories: ${{ github.repository }},repo2
+```
+
 ### Create a token for all repositories in another owner's installation
 
 ```yaml
@@ -377,6 +383,8 @@ steps:
 
 > [!NOTE]
 > If `owner` is set and `repositories` is empty, access will be scoped to all repositories in the provided repository owner's installation. If `owner` and `repositories` are empty, access will be scoped to only the current repository.
+>
+> Repository entries may include an owner, for example `owner/repo1`. The owner portion must match the `owner` input, or the current repository owner if `owner` is unset.
 
 ### `enterprise`
 
